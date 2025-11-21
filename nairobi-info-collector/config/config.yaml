@@ -1,0 +1,114 @@
+app:
+  name: "Nairobi Information Collector"
+  version: "1.0.0"
+  description: "Advanced Intelligence Retrieval Agent for Nairobi, Kenya"
+
+sources:
+  news:
+    - name: "Nation Africa"
+      url: "https://nation.africa/kenya/nairobi"
+      enabled: true
+      priority: high
+
+    - name: "Standard Media"
+      url: "https://www.standardmedia.co.ke/nairobi"
+      enabled: true
+      priority: high
+
+    - name: "Citizen Digital"
+      url: "https://www.citizen.digital/news"
+      enabled: true
+      priority: high
+
+    - name: "Business Daily"
+      url: "https://www.businessdailyafrica.com/bd/counties/nairobi"
+      enabled: true
+      priority: medium
+
+  government:
+    - name: "Nairobi City County"
+      url: "https://nairobi.go.ke"
+      enabled: true
+      priority: high
+
+    - name: "Kenya Open Data"
+      url: "https://www.opendata.go.ke"
+      enabled: true
+      priority: medium
+
+  tourism:
+    - name: "TripAdvisor Nairobi"
+      url: "https://www.tripadvisor.com/Tourism-g294207-Nairobi-Vacations.html"
+      enabled: true
+      priority: medium
+
+    - name: "Lonely Planet"
+      url: "https://www.lonelyplanet.com/kenya/nairobi"
+      enabled: true
+      priority: low
+
+  tech_business:
+    - name: "TechCabal"
+      url: "https://techcabal.com/category/kenya/"
+      enabled: true
+      priority: high
+
+categories:
+  - name: "breaking_updates"
+    keywords: ["breaking", "urgent", "alert", "emergency"]
+    priority: 1
+
+  - name: "city_life"
+    keywords: ["neighborhood", "real estate", "safety", "infrastructure"]
+    priority: 2
+
+  - name: "culture_events"
+    keywords: ["concert", "festival", "exhibition", "museum", "theater"]
+    priority: 3
+
+  - name: "business_economy"
+    keywords: ["startup", "investment", "funding", "tech", "business"]
+    priority: 4
+
+  - name: "food_nightlife"
+    keywords: ["restaurant", "bar", "club", "cafe", "dining"]
+    priority: 5
+
+  - name: "transportation"
+    keywords: ["traffic", "airport", "uber", "matatu", "road"]
+    priority: 6
+
+  - name: "social_media"
+    keywords: ["trending", "viral", "hashtag"]
+    priority: 7
+
+  - name: "community"
+    keywords: ["community", "charity", "ngo", "initiative"]
+    priority: 8
+
+collection:
+  intervals:
+    news: 15  # minutes
+    social_media: 10
+    government: 60
+    tourism: 120
+    business: 30
+
+  limits:
+    max_items_per_source: 100
+    max_age_hours: 72
+
+  filters:
+    min_relevance_score: 0.6
+    exclude_keywords: ["spam", "advertisement"]
+
+output:
+  formats:
+    - json
+    - markdown
+    - html
+
+  reports:
+    daily_brief: "08:00"
+    hourly_update: true
+    real_time_alerts: true
